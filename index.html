@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Toolkit — 50 Tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+header{background:#1e293b;padding:24px 32px;border-bottom:1px solid #334155}
+header h1{font-size:24px;color:#38bdf8}
+header p{color:#94a3b8;margin-top:4px;font-size:14px}
+.search-bar{padding:16px 32px;background:#1e293b;border-bottom:1px solid #334155}
+.search-bar input{width:100%;max-width:500px;padding:10px 16px;background:#0f172a;border:1px solid #475569;border-radius:8px;color:#e2e8f0;font-size:14px;outline:none}
+.search-bar input:focus{border-color:#38bdf8}
+.categories{display:flex;gap:8px;padding:16px 32px;flex-wrap:wrap;background:#1e293b;border-bottom:1px solid #334155}
+.cat-btn{padding:6px 14px;border-radius:20px;border:1px solid #475569;background:transparent;color:#94a3b8;cursor:pointer;font-size:13px;transition:all .2s}
+.cat-btn:hover,.cat-btn.active{background:#0284c7;border-color:#0284c7;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;padding:24px 32px}
+.card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:18px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.card:hover{border-color:#38bdf8;transform:translateY(-2px);box-shadow:0 4px 20px rgba(56,189,248,.15)}
+.card-icon{font-size:24px;margin-bottom:10px}
+.card-title{font-size:15px;font-weight:600;color:#f1f5f9;margin-bottom:6px}
+.card-desc{font-size:12px;color:#64748b;line-height:1.5}
+.card-badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;margin-top:8px;font-weight:500}
+.badge-technical{background:#1e3a5f;color:#60a5fa}
+.badge-content{background:#1a3a2e;color:#4ade80}
+.badge-keyword{background:#3a1f5f;color:#c084fc}
+.badge-backlink{background:#3a1a1a;color:#f87171}
+.badge-local{background:#3a2a10;color:#fb923c}
+footer{text-align:center;padding:24px;color:#475569;font-size:13px;border-top:1px solid #334155}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#1e293b;border:1px solid #334155;border-radius:12px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto}
+.modal-header{padding:20px 24px;border-bottom:1px solid #334155;display:flex;align-items:center;justify-content:space-between}
+.modal-header h2{font-size:18px;color:#f1f5f9}
+.modal-close{background:none;border:none;color:#64748b;cursor:pointer;font-size:22px;line-height:1}
+.modal-body{padding:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;color:#94a3b8;margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 12px;background:#0f172a;border:1px solid #475569;border-radius:8px;color:#e2e8f0;font-size:14px;outline:none;font-family:inherit}
+.form-group input:focus,.form-group textarea:focus{border-color:#38bdf8}
+.form-group textarea{min-height:80px;resize:vertical}
+.btn-run{width:100%;padding:12px;background:#0284c7;border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:600;cursor:pointer;margin-top:8px}
+.btn-run:hover{background:#0369a1}
+.btn-run:disabled{background:#334155;cursor:not-allowed}
+.result-box{margin-top:20px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:16px;max-height:400px;overflow-y:auto}
+.result-box pre{font-size:12px;line-height:1.6;white-space:pre-wrap;word-break:break-word;color:#94a3b8}
+.stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.stat{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 16px;flex:1;min-width:100px;text-align:center}
+.stat-val{font-size:22px;font-weight:700;color:#38bdf8}
+.stat-label{font-size:11px;color:#64748b;margin-top:2px}
+.issue-item{padding:6px 10px;background:#3b1515;border-left:3px solid #ef4444;border-radius:4px;margin:4px 0;font-size:13px;color:#fca5a5}
+.pass-item{padding:6px 10px;background:#0f3a1f;border-left:3px solid #22c55e;border-radius:4px;margin:4px 0;font-size:13px;color:#86efac}
+.tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:12px;margin:2px}
+.tag-desc{background:#1e3a5f;color:#60a5fa}
+.tag-generic{background:#3a2a10;color:#fb923c}
+.tag-empty{background:#3b1515;color:#f87171}
+.tag-image{background:#1a2a3a;color:#67e8f9}
+.tag-naked_url{background:#2a1a3a;color:#c084fc}
+.loading{text-align:center;padding:20px;color:#64748b}
+.spinner{display:inline-block;width:24px;height:24px;border:3px solid #334155;border-top-color:#38bdf8;border-radius:50%;animation:spin .8s linear infinite;margin-right:8px;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+.score-bar{height:8px;background:#334155;border-radius:4px;overflow:hidden;margin-top:4px}
+.score-fill{height:100%;border-radius:4px;transition:width .5s}
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔧 SEO Toolkit</h1>
+  <p>50 powerful SEO analysis tools — powered by your Render API</p>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search tools... (e.g. 'meta', 'speed', 'keyword')" oninput="filterTools()">
+</div>
+
+<div class="categories">
+  <button class="cat-btn active" onclick="filterCat('all',this)">All (50)</button>
+  <button class="cat-btn" onclick="filterCat('technical',this)">⚙️ Technical SEO</button>
+  <button class="cat-btn" onclick="filterCat('content',this)">📝 Content</button>
+  <button class="cat-btn" onclick="filterCat('keyword',this)">🔍 Keywords</button>
+  <button class="cat-btn" onclick="filterCat('backlink',this)">🔗 Backlinks</button>
+  <button class="cat-btn" onclick="filterCat('local',this)">📍 Local SEO</button>
+</div>
+
+<div class="grid" id="toolGrid"></div>
+
+<footer>SEO Toolkit &bull; 50 Tools &bull; Built on Render.com + cPanel</footer>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Tool</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const API = "https://pi-app-6gkl.onrender.com";
+
+const TOOLS = [
+  {id:"analyze",icon:"⚓",title:"Anchor Text Analyzer",desc:"Analyzes anchor text distribution, types, and keyword usage in links",cat:"content",badge:"content",
+   fields:[{label:"URL to analyze",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total||0}</div><div class="stat-label">Total Links</div></div><div class="stat"><div class="stat-val">${d.internal||0}</div><div class="stat-label">Internal</div></div><div class="stat"><div class="stat-val">${d.external||0}</div><div class="stat-label">External</div></div></div>${renderDist(d.type_distribution)}<br><b>Top Anchors:</b><br>${(d.top_anchors||[]).map(([a,c])=>`<div style="padding:4px 0;border-bottom:1px solid #334155;font-size:13px">${c}× <span style="color:#94a3b8">"${a||'(empty)'}"</span></div>`).join("")}`},
+
+  {id:"meta-tags",icon:"🏷️",title:"Meta Tag Analyzer",desc:"Analyzes title, meta description, OG tags, Twitter cards, schema, and more",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.title_length||0}</div><div class="stat-label">Title Length</div></div><div class="stat"><div class="stat-val">${d.meta_desc_length||0}</div><div class="stat-label">Desc Length</div></div><div class="stat"><div class="stat-val">${d.schema_count||0}</div><div class="stat-label">Schemas</div></div></div><b>Title:</b> ${d.title||"—"}<br><br><b>Issues:</b><br>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">No issues found ✅</div>'}`},
+
+  {id:"headings",icon:"📋",title:"Heading Analyzer",desc:"Validates H1-H6 heading hierarchy, checks keyword usage, flags skip levels",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Target Keyword (optional)",key:"keyword",type:"text",ph:"seo tools"}],
+   render:(d)=>`<b>Heading Structure:</b><br>${(d.headings||[]).map(h=>`<div style="padding:3px 0 3px ${(h.level-1)*16}px;font-size:13px"><span style="color:#38bdf8">${h.tag}</span> ${h.text}</div>`).join("")}<br><b>Issues:</b><br>${(d.issues||[]).map(i=>`<div class="${i.severity==='ERROR'?'issue-item':'pass-item'}">[${i.severity}] ${i.message}</div>`).join("")||'<div class="pass-item">No issues ✅</div>'}`},
+
+  {id:"broken-links",icon:"💔",title:"Broken Link Checker",desc:"Checks all links on a page for 404s, timeouts, and connection errors",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total_links||0}</div><div class="stat-label">Links Checked</div></div><div class="stat"><div class="stat-val" style="color:${d.broken_count>0?'#ef4444':'#22c55e'}">${d.broken_count||0}</div><div class="stat-label">Broken</div></div></div>${(d.broken||[]).length?`<b>Broken Links:</b><br>${d.broken.map(b=>`<div class="issue-item">[${b.status||b.error}] ${b.url}</div>`).join("")}`:'<div class="pass-item">No broken links found ✅</div>'}`},
+
+  {id:"canonical",icon:"🔗",title:"Canonical Checker",desc:"Validates canonical URL tags, detects missing, cross-domain, and mismatched canonicals",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<b>Canonical:</b> ${d.canonical||"<em>None found</em>"}<br><br><b>Self-referencing:</b> ${d.is_self_referencing?"✅ Yes":"❌ No"}<br><br>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">Canonical looks good ✅</div>'}`},
+
+  {id:"image-seo",icon:"🖼️",title:"Image SEO Analyzer",desc:"Audits images for alt text, dimensions, format, lazy loading, and filenames",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total||0}</div><div class="stat-label">Total Images</div></div><div class="stat"><div class="stat-val" style="color:${d.missing_alt>0?'#ef4444':'#22c55e'}">${d.missing_alt||0}</div><div class="stat-label">Missing Alt</div></div><div class="stat"><div class="stat-val">${d.with_issues||0}</div><div class="stat-label">With Issues</div></div></div>${(d.images||[]).filter(i=>i.issue_count>0).slice(0,10).map(i=>`<div class="issue-item">${i.filename||"unnamed"}: ${i.issues}</div>`).join("")||'<div class="pass-item">All images look good ✅</div>'}`},
+
+  {id:"mobile",icon:"📱",title:"Mobile Friendly Checker",desc:"Checks viewport, font sizes, tap targets, and responsive image attributes",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`${renderScore(d.score,d.grade)}<br><b>Viewport:</b> ${d.has_viewport?"✅":"❌"} &nbsp; <b>AMP:</b> ${d.has_amp?"✅":"—"}<br><br>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">Mobile-friendly ✅</div>'}`},
+
+  {id:"page-speed",icon:"⚡",title:"Page Speed Analyzer",desc:"Measures response time, page size, render-blocking scripts, and lazy loading",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.response_time_s||0}s</div><div class="stat-label">Load Time</div></div><div class="stat"><div class="stat-val">${d.page_size_kb||0}KB</div><div class="stat-label">Page Size</div></div><div class="stat"><div class="stat-val">${d.score||0}</div><div class="stat-label">Score</div></div></div>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">No speed issues ✅</div>'}`},
+
+  {id:"cwv",icon:"🏃",title:"Core Web Vitals Estimator",desc:"Estimates LCP, CLS, and FID/INP signals from HTML analysis",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`${renderScore(d.score,d.grade)}<br><div class="stat-row"><div class="stat"><div class="stat-val">${d.ttfb_s||0}s</div><div class="stat-label">TTFB</div></div><div class="stat"><div class="stat-val">${d.lcp_score||0}/33</div><div class="stat-label">LCP</div></div><div class="stat"><div class="stat-val">${d.cls_score||0}/33</div><div class="stat-label">CLS</div></div><div class="stat"><div class="stat-val">${d.fid_score||0}/34</div><div class="stat-label">FID</div></div></div>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">No CWV issues ✅</div>'}`},
+
+  {id:"readability",icon:"📖",title:"Readability Analyzer",desc:"Flesch-Kincaid, Gunning Fog, Coleman-Liau readability scores with sentence analysis",cat:"content",badge:"content",
+   fields:[{label:"URL (or leave blank to paste text)",key:"url",type:"text",ph:"https://example.com"},{label:"Or paste text",key:"text",type:"textarea",ph:"Paste your content here..."}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total_words||0}</div><div class="stat-label">Words</div></div><div class="stat"><div class="stat-val">${d.flesch_kincaid_grade||0}</div><div class="stat-label">FK Grade</div></div><div class="stat"><div class="stat-val">${d.gunning_fog||0}</div><div class="stat-label">Fog Index</div></div></div><b>Grade Level:</b> ${d.grade_label||"—"}<br><b>Avg Sentence:</b> ${d.avg_sentence_length||0} words<br><b>Complex Words:</b> ${d.complex_words_pct||0}%<br><b>Long Sentences:</b> ${d.long_sentences||0}`},
+
+  {id:"freshness",icon:"📅",title:"Content Freshness Scorer",desc:"Scores content freshness from date signals, meta tags, and outdated references",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`${renderScore(d.score,d.grade)}<br>${(d.factors||[]).map(f=>`<div style="padding:4px 0;font-size:13px"><span style="color:${f.pts>0?'#22c55e':'#ef4444'}">${f.pts>0?'+':''}${f.pts}</span> ${f.desc}</div>`).join("")}`},
+
+  {id:"content-optimizer",icon:"🎯",title:"Content Optimizer",desc:"Full SEO scoring: keyword in title/H1/meta, density, readability, structure",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Target Keyword",key:"keyword",type:"text",ph:"best seo tools"}],
+   render:(d)=>`${renderScore(d.score,d.grade)}<br><div class="stat-row"><div class="stat"><div class="stat-val">${d.word_count||0}</div><div class="stat-label">Words</div></div><div class="stat"><div class="stat-val">${d.keyword_frequency||0}</div><div class="stat-label">KW Count</div></div><div class="stat"><div class="stat-val">${d.keyword_density||0}%</div><div class="stat-label">KW Density</div></div></div>${(d.details||[]).map(i=>`<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px;border-bottom:1px solid #334155"><span>${i.check}</span><span style="color:${i.pts>=i.max?'#22c55e':i.pts>0?'#fb923c':'#94a3b8'}">${i.pts}/${i.max}</span></div>`).join("")}`},
+
+  {id:"site-audit",icon:"🔍",title:"Site Audit Summary",desc:"Comprehensive one-pass SEO audit: meta, content, links, schema, speed, images",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Target Keyword (optional)",key:"keyword",type:"text",ph:"seo tools"}],
+   render:(d)=>`${renderScore(d.score,d.grade)}<br><div class="stat-row"><div class="stat"><div class="stat-val" style="color:#22c55e">${d.passed_count||0}</div><div class="stat-label">Passed</div></div><div class="stat"><div class="stat-val" style="color:#ef4444">${d.issues_count||0}</div><div class="stat-label">Issues</div></div><div class="stat"><div class="stat-val">${d.word_count||0}</div><div class="stat-label">Words</div></div></div>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")}${(d.passed||[]).map(i=>`<div class="pass-item">${i}</div>`).join("")}`},
+
+  {id:"schema",icon:"🗂️",title:"Schema Extractor",desc:"Extracts and validates JSON-LD structured data and Microdata from any page",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.json_ld_count||0}</div><div class="stat-label">JSON-LD</div></div><div class="stat"><div class="stat-val">${d.microdata_count||0}</div><div class="stat-label">Microdata</div></div></div>${(d.schemas||[]).map(s=>`<div style="padding:8px;background:#0f172a;border-radius:6px;margin:4px 0;font-size:13px"><b style="color:#38bdf8">${s.type||"Unknown"}</b><br>${JSON.stringify(s.data||{}).slice(0,200)}...</div>`).join("")||'<div class="issue-item">No structured data found</div>'}`},
+
+  {id:"faq-schema",icon:"❓",title:"FAQ Schema Generator",desc:"Extracts Q&A pairs from pages and generates valid FAQ JSON-LD schema markup",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com/faq"}],
+   render:(d)=>`<b>${d.pairs_count||0} Q&A pairs found</b><br><br>${(d.pairs||[]).slice(0,5).map(p=>`<div style="margin:8px 0;padding:8px;background:#0f172a;border-radius:6px;font-size:13px"><b style="color:#38bdf8">Q:</b> ${p.question}<br><b style="color:#64748b">A:</b> ${(p.answer||"").slice(0,120)}...</div>`).join("")}<br><b>JSON-LD Preview:</b><pre style="font-size:11px;color:#64748b">${(d.json_ld||"").slice(0,400)}...</pre>`},
+
+  {id:"structured-data",icon:"📊",title:"Structured Data Generator",desc:"Generates Article, Product, LocalBusiness, HowTo JSON-LD schema from page or inputs",cat:"technical",badge:"technical",
+   fields:[{label:"Type",key:"type",type:"select",options:["article","product","local-business","howto"]},{label:"URL (optional)",key:"url",type:"text",ph:"https://example.com"},{label:"Name (for product/business)",key:"name",type:"text",ph:"My Product"},{label:"Description",key:"description",type:"text",ph:"Optional description"},{label:"Price (for product)",key:"price",type:"text",ph:"29.99"},{label:"Author (for article)",key:"author",type:"text",ph:"John Doe"}],
+   render:(d)=>`<b>Generated ${(d.schema||{})["@type"]||""} Schema:</b><pre style="font-size:12px;color:#64748b;margin-top:8px">${(d.json_ld||"").slice(0,800)}</pre>`},
+
+  {id:"serp-preview",icon:"🔎",title:"SERP Snippet Previewer",desc:"Simulates how your page appears in Google search results with pixel analysis",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div style="background:#0f172a;border-radius:8px;padding:16px;margin-bottom:12px"><div style="color:#8ab4f8;font-size:16px;font-weight:500">${d.title_preview||"No title"}</div><div style="color:#34a853;font-size:12px;margin:2px 0">${d.breadcrumb||""}</div><div style="color:#bdc1c6;font-size:13px">${d.desc_preview||"No description"}</div></div><b>Title:</b> ${d.title_length||0} chars ${d.title_ok?'✅':'⚠️'}<br><b>Description:</b> ${d.desc_length||0} chars ${d.desc_ok?'✅':'⚠️'}<br><br>${(d.issues||[]).map(i=>`<div class="issue-item">💡 ${i}</div>`).join("")||'<div class="pass-item">Snippet looks good ✅</div>'}`},
+
+  {id:"social-preview",icon:"📣",title:"Social Preview Validator",desc:"Validates Open Graph and Twitter Card tags for social media sharing",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`${renderScore(d.score)}<br><table style="width:100%;font-size:13px;margin-top:8px"><tr><td style="color:#64748b;padding:4px 0">OG Title</td><td>${d.og_title||'❌ Missing'}</td></tr><tr><td style="color:#64748b;padding:4px 0">OG Image</td><td>${d.og_image?'✅ Present':'❌ Missing'}</td></tr><tr><td style="color:#64748b;padding:4px 0">Twitter Card</td><td>${d.twitter_card||'❌ Missing'}</td></tr></table><br>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">All social tags present ✅</div>'}`},
+
+  {id:"redirects",icon:"↩️",title:"Redirect Chain Checker",desc:"Traces redirect chains, detects loops, mixed HTTP/HTTPS, and temporary redirects",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com/old-page"}],
+   render:(d)=>`<b>Hops:</b> ${d.hops||0} &nbsp; <b>Final Status:</b> ${d.final_status||"—"}<br><br><b>Chain:</b><br>${(d.chain||[]).map(c=>`<div style="font-size:12px;padding:3px 0;color:#94a3b8">[${c.status||"…"}] ${c.url}</div>`).join("")}<br>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">No redirect issues ✅</div>'}`},
+
+  {id:"robots",icon:"🤖",title:"Robots.txt Analyzer",desc:"Parses robots.txt, checks disallow rules, sitemap declarations, crawl delays",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Test Path (optional)",key:"test_path",type:"text",ph:"/blog/"}],
+   render:(d)=>`<b>Rules:</b> ${d.rules_count||0} &nbsp; <b>Crawl Delay:</b> ${d.crawl_delay||"none"}<br><br><b>Sitemaps:</b><br>${(d.sitemaps||[]).map(s=>`<div style="font-size:12px;color:#38bdf8">${s}</div>`).join("") ||"None declared"}<br><br><b>Disallow Rules:</b><br>${(d.disallow_rules||[]).slice(0,10).map(r=>`<div style="font-size:12px;padding:2px 0">[${r.agent}] ${r.path}</div>`).join("")}<br>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")}${(d.warnings||[]).map(w=>`<div class="issue-item" style="background:#3a2a10;border-color:#f59e0b;color:#fcd34d">${w}</div>`).join("")}${d.test_result?`<br><b>Path Test:</b> <span style="color:${d.test_result==='ALLOWED'?'#22c55e':'#ef4444'}">${d.test_result}</span>`:""}`},
+
+  {id:"sitemap",icon:"🗺️",title:"Sitemap Analyzer",desc:"Validates XML sitemaps, checks URL count, lastmod freshness, duplicates",cat:"technical",badge:"technical",
+   fields:[{label:"Sitemap URL",key:"url",type:"text",ph:"https://example.com/sitemap.xml"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total_urls||0}</div><div class="stat-label">Total URLs</div></div><div class="stat"><div class="stat-val">${d.fresh_90d||0}</div><div class="stat-label">Fresh (90d)</div></div><div class="stat"><div class="stat-val" style="color:${d.duplicates>0?'#ef4444':'#22c55e'}">${d.duplicates||0}</div><div class="stat-label">Duplicates</div></div></div>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">Sitemap looks good ✅</div>'}`},
+
+  {id:"local-seo",icon:"📍",title:"Local SEO Auditor",desc:"Audits NAP consistency, LocalBusiness schema, Google Maps, opening hours",cat:"local",badge:"local",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://localbusiness.com"}],
+   render:(d)=>`${renderScore(d.score,d.grade)}<br><table style="width:100%;font-size:13px"><tr><td style="color:#64748b;padding:4px 0">Phone</td><td>${(d.phone_numbers||[]).join(", ")||'❌ Not found'}</td></tr><tr><td style="color:#64748b;padding:4px 0">Local Schema</td><td>${d.has_local_schema?'✅ '+d.schema_type:'❌ Missing'}</td></tr><tr><td style="color:#64748b;padding:4px 0">Google Maps</td><td>${d.has_google_maps?'✅':'❌'}</td></tr><tr><td style="color:#64748b;padding:4px 0">Opening Hours</td><td>${d.has_opening_hours?'✅':'❌'}</td></tr><tr><td style="color:#64748b;padding:4px 0">Social</td><td>${(d.social_profiles||[]).join(", ")||"None"}</td></tr></table><br>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")}`},
+
+  {id:"hreflang",icon:"🌍",title:"Hreflang Validator",desc:"Validates multilingual hreflang implementation, checks return tags and x-default",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com/en/"}],
+   render:(d)=>`<b>Tags Found:</b> ${d.tag_count||0} &nbsp; <b>x-default:</b> ${d.has_xdefault?"✅":"❌"}<br><br>${(d.hreflang_tags||[]).map(t=>`<div style="font-size:13px;padding:3px 0"><span style="color:#38bdf8">${t.lang}</span> → ${t.href}</div>`).join("")}<br>${(d.issues||[]).map(i=>`<div class="${i.severity==='ERROR'?'issue-item':'pass-item'}">[${i.severity}] ${i.message}</div>`).join("")||'<div class="pass-item">Hreflang looks good ✅</div>'}`},
+
+  {id:"serp-features",icon:"⭐",title:"SERP Feature Analyzer",desc:"Checks eligibility for Featured Snippets, FAQ, HowTo, Breadcrumbs, Video results",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`${(d.features||[]).map(f=>`<div style="margin:8px 0;padding:10px;background:#0f172a;border-radius:6px"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:13px">${f.feature}</b><span style="color:${f.score>=60?'#22c55e':f.score>=30?'#fb923c':'#ef4444'}">${f.score}/80</span></div><div class="score-bar"><div class="score-fill" style="width:${f.score/80*100}%;background:${f.score>=60?'#22c55e':f.score>=30?'#fb923c':'#ef4444'}"></div></div></div>`).join("")}`},
+
+  {id:"repurpose",icon:"♻️",title:"Content Repurposer",desc:"Extracts pull quotes, social posts, email blurbs, and key takeaways from content",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com/blog-post"}],
+   render:(d)=>`<b>Pull Quotes:</b><br>${(d.pull_quotes||[]).map(q=>`<div style="padding:8px;background:#0f172a;border-left:3px solid #38bdf8;border-radius:4px;margin:4px 0;font-size:13px;color:#94a3b8">"${q}"</div>`).join("")}<br><b>Social Posts:</b><br>${(d.social_posts||[]).slice(0,4).map(p=>`<div style="padding:6px 8px;background:#0f172a;border-radius:6px;margin:4px 0;font-size:12px"><span style="color:#38bdf8">[${p.platform}]</span> ${p.text.slice(0,100)}</div>`).join("")}<br><b>Key Takeaways:</b><br>${(d.key_takeaways||[]).map((t,i)=>`<div style="font-size:13px;padding:3px 0">${i+1}. ${t}</div>`).join("")}`},
+
+  {id:"meta-generator",icon:"✍️",title:"Meta Description Generator",desc:"Auto-generates SEO meta descriptions with keyword inclusion from page content",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Target Keyword",key:"keyword",type:"text",ph:"best seo tools"}],
+   render:(d)=>`${(d.variants||[]).map((v,i)=>`<div style="margin:10px 0;padding:12px;background:#0f172a;border-radius:8px"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><b style="font-size:12px;color:#64748b">Variant ${i+1} — ${v.strategy}</b><span style="font-size:12px;color:${v.length_ok?'#22c55e':'#fb923c'}">${v.length} chars ${v.has_keyword?'✅':'⚠️'}</span></div><div style="font-size:14px;color:#e2e8f0">"${v.text}"</div></div>`).join("")}`},
+
+  {id:"title-optimizer",icon:"🏆",title:"Title Tag Optimizer",desc:"Scores titles for CTR potential: power words, numbers, length, keyword placement",cat:"content",badge:"content",
+   fields:[{label:"Page URL (or enter titles below)",key:"url",type:"text",ph:"https://example.com"},{label:"Title(s) — one per line",key:"titles",type:"textarea",ph:"10 Best SEO Tools in 2025\nUltimate SEO Guide"},{label:"Target Keyword",key:"keyword",type:"text",ph:"seo tools"}],
+   render:(d)=>`${(d.results||[]).map(r=>`<div style="margin:10px 0;padding:12px;background:#0f172a;border-radius:8px"><div style="display:flex;justify-content:space-between"><b style="font-size:13px">"${r.title}"</b><span style="color:${r.score>=80?'#22c55e':r.score>=65?'#fb923c':'#ef4444'};font-weight:700">[${r.grade}] ${r.score}/100</span></div><div class="score-bar" style="margin:6px 0"><div class="score-fill" style="width:${r.score}%;background:${r.score>=80?'#22c55e':r.score>=65?'#fb923c':'#ef4444'}"></div></div>${(r.suggestions||[]).map(s=>`<div style="font-size:12px;color:#64748b">💡 ${s}</div>`).join("")}</div>`).join("")}`,
+   transform:(data)=>{const titles=data.titles?data.titles.split("\n").filter(t=>t.trim()):[];return {...data,titles};}},
+
+  {id:"keyword-intent",icon:"🧭",title:"Keyword Intent Classifier",desc:"Classifies keywords as Informational, Commercial, Transactional, or Navigational",cat:"keyword",badge:"keyword",
+   fields:[{label:"Keywords — one per line",key:"keywords_text",type:"textarea",ph:"best seo tools\nhow to do seo\nbuy seo software"}],
+   render:(d)=>`<div class="stat-row">${Object.entries(d.distribution||{}).map(([k,v])=>`<div class="stat"><div class="stat-val">${v}</div><div class="stat-label">${k}</div></div>`).join("")}</div>${(d.results||[]).map(r=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #334155;font-size:13px"><span>${r.keyword}</span><span style="color:${r.intent==='transactional'?'#22c55e':r.intent==='commercial'?'#38bdf8':r.intent==='navigational'?'#fb923c':'#94a3b8'}">${r.intent}</span></div>`).join("")}`,
+   transform:(data)=>({...data,keywords:data.keywords_text?data.keywords_text.split("\n").filter(k=>k.trim()):[]})},
+
+  {id:"ngrams",icon:"📊",title:"N-gram Analyzer",desc:"Frequency analysis of unigrams, bigrams, trigrams to find content themes",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Max n-gram size",key:"max_n",type:"text",ph:"3"}],
+   render:(d)=>`${Object.entries(d.ngrams||{}).map(([label,grams])=>`<b>${label}:</b><br>${grams.slice(0,10).map(g=>`<div style="display:flex;justify-content:space-between;font-size:13px;padding:2px 0"><span>${g.ngram}</span><span style="color:#38bdf8">${g.count}</span></div>`).join("")}<br>`).join("")}`},
+
+  {id:"outbound-links",icon:"🔀",title:"Outbound Link Analyzer",desc:"Audits external links: distribution by domain, nofollow usage, anchor texts",cat:"backlink",badge:"backlink",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total||0}</div><div class="stat-label">Total</div></div><div class="stat"><div class="stat-val">${d.dofollow||0}</div><div class="stat-label">Dofollow</div></div><div class="stat"><div class="stat-val">${d.nofollow||0}</div><div class="stat-label">Nofollow</div></div></div><b>Top Domains:</b><br>${(d.top_domains||[]).slice(0,10).map(d2=>`<div style="display:flex;justify-content:space-between;font-size:13px;padding:3px 0">${d2.domain}<span style="color:#38bdf8">${d2.count}</span></div>`).join("")}`},
+
+  {id:"internal-links",icon:"🕸️",title:"Internal Link Analyzer",desc:"Maps internal link structure, top linked pages, anchor text distribution",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.internal_count||0}</div><div class="stat-label">Internal</div></div><div class="stat"><div class="stat-val">${d.external_count||0}</div><div class="stat-label">External</div></div><div class="stat"><div class="stat-val">${d.nofollow_count||0}</div><div class="stat-label">Nofollow</div></div></div><b>Top Linked Pages:</b><br>${(d.top_linked_pages||[]).slice(0,8).map(p=>`<div style="font-size:12px;padding:3px 0;color:#94a3b8">${p.inbound_count}× ${p.url.slice(0,60)}</div>`).join("")}`},
+
+  {id:"content-pruning",icon:"✂️",title:"Content Pruning Analyzer",desc:"Identifies pages to delete, merge, redirect, or update based on thin content",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com/old-page"}],
+   render:(d)=>`<b>Word Count:</b> ${d.word_count||0}<br><b>Age:</b> ${d.days_since_update||"Unknown"} days<br><b>Status:</b> ${d.status_code||"—"}<br><br><div style="padding:10px;background:#0f172a;border-left:3px solid ${d.priority==='HIGH'?'#ef4444':d.priority==='MEDIUM'?'#fb923c':'#22c55e'};border-radius:4px;margin-top:8px"><b>Recommendation:</b> ${d.action||"—"}<br><b>Priority:</b> ${d.priority||"—"}</div>`},
+
+  {id:"page-segmenter",icon:"📐",title:"Page Segmenter",desc:"Separates main content from boilerplate (nav, footer, ads) for SEO analysis",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.main_content_words||0}</div><div class="stat-label">Main Words</div></div><div class="stat"><div class="stat-val">${d.boilerplate_words||0}</div><div class="stat-label">Boilerplate</div></div><div class="stat"><div class="stat-val">${d.content_ratio_pct||0}%</div><div class="stat-label">Content Ratio</div></div></div><b>Status:</b> <span style="color:${d.status==='GOOD'?'#22c55e':d.status==='LOW'?'#fb923c':'#ef4444'}">${d.status||"—"}</span><br><b>Article Tag:</b> ${d.has_article_tag?"✅":"❌"}<br><br><b>Content Preview:</b><br><div style="font-size:12px;color:#64748b;margin-top:6px">${(d.main_text_preview||"").slice(0,200)}...</div>`},
+
+  {id:"text-html-ratio",icon:"📏",title:"Text-to-HTML Ratio",desc:"Measures text vs code ratio, flags bloated pages with excessive scripts/styles",cat:"technical",badge:"technical",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.raw_html_kb||0}KB</div><div class="stat-label">HTML Size</div></div><div class="stat"><div class="stat-val">${d.text_content_kb||0}KB</div><div class="stat-label">Text Size</div></div><div class="stat"><div class="stat-val" style="color:${d.text_ratio_pct>=25?'#22c55e':d.text_ratio_pct>=10?'#fb923c':'#ef4444'}">${d.text_ratio_pct||0}%</div><div class="stat-label">Ratio</div></div></div><b>Status:</b> ${d.status||"—"}<br><b>External Scripts:</b> ${d.external_scripts||0}<br><b>Words:</b> ${d.word_count||0}`},
+
+  {id:"thin-content",icon:"📄",title:"Thin Content Detector",desc:"Identifies thin, low-quality content based on word count, text ratio, paragraphs",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com/page"},{label:"Min Words Threshold",key:"min_words",type:"text",ph:"300"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.word_count||0}</div><div class="stat-label">Words</div></div><div class="stat"><div class="stat-val">${d.paragraph_count||0}</div><div class="stat-label">Paragraphs</div></div><div class="stat"><div class="stat-val">${d.text_html_ratio_pct||0}%</div><div class="stat-label">Text Ratio</div></div></div>${d.status==="THIN"?`<div class="issue-item">⚠️ THIN CONTENT</div>`:`<div class="pass-item">✅ Content OK</div>`}${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")}`},
+
+  {id:"questions",icon:"💬",title:"Question Extractor",desc:"Extracts and generates FAQ questions from content for PAA optimization",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Keyword (for question generation)",key:"keyword",type:"text",ph:"cloud hosting"}],
+   render:(d)=>`<b>Found in Content (${(d.explicit_questions||[]).length}):</b><br>${(d.explicit_questions||[]).slice(0,8).map(q=>`<div style="font-size:13px;padding:3px 0;color:#94a3b8">• ${q}</div>`).join("")}<br><b>From Headings (${(d.heading_questions||[]).length}):</b><br>${(d.heading_questions||[]).slice(0,5).map(q=>`<div style="font-size:13px;padding:3px 0"><span style="color:#38bdf8">[${q.source}]</span> ${q.text}</div>`).join("")}<br><b>Generated Questions:</b><br>${(d.generated_questions||[]).map(q=>`<div style="font-size:13px;padding:3px 0;color:#94a3b8">• ${q}</div>`).join("")}`},
+
+  {id:"sentiment",icon:"😊",title:"Sentiment Analyzer",desc:"Analyzes content tone at page, paragraph, and heading level using VADER",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Or paste text",key:"text",type:"textarea",ph:"Your content here..."}],
+   render:(d)=>`<div style="padding:12px;background:#0f172a;border-radius:8px;margin-bottom:12px"><b>Overall:</b> <span style="color:${d.overall?.sentiment==='POSITIVE'?'#22c55e':d.overall?.sentiment==='NEGATIVE'?'#ef4444':'#94a3b8'}">${d.overall?.sentiment||"—"}</span> (${d.overall?.compound||0})</div><div class="stat-row"><div class="stat"><div class="stat-val" style="color:#22c55e">${d.paragraph_distribution?.positive||0}</div><div class="stat-label">Positive</div></div><div class="stat"><div class="stat-val" style="color:#94a3b8">${d.paragraph_distribution?.neutral||0}</div><div class="stat-label">Neutral</div></div><div class="stat"><div class="stat-val" style="color:#ef4444">${d.paragraph_distribution?.negative||0}</div><div class="stat-label">Negative</div></div></div>`},
+
+  {id:"content-calendar",icon:"📆",title:"Content Calendar Generator",desc:"Generates a publishing calendar from keywords with content types and priorities",cat:"keyword",badge:"keyword",
+   fields:[{label:"Keywords — one per line",key:"keywords_text",type:"textarea",ph:"best seo tools\nhow to build backlinks\nlocal seo tips"},{label:"Weeks",key:"weeks",type:"text",ph:"4"},{label:"Posts per week",key:"posts_per_week",type:"text",ph:"3"}],
+   render:(d)=>`<b>${d.total_posts||0} posts planned over ${d.weeks||0} weeks</b><br><br>${(d.calendar||[]).slice(0,10).map(e=>`<div style="padding:8px;background:#0f172a;border-radius:6px;margin:4px 0;font-size:12px"><div style="display:flex;justify-content:space-between"><span style="color:#38bdf8">${e.publish_date} (${e.day?.slice(0,3)})</span><span style="color:${e.priority==='high'?'#ef4444':e.priority==='medium'?'#fb923c':'#22c55e'}">${e.priority}</span></div><div style="color:#e2e8f0;margin-top:3px">${e.suggested_title}</div><div style="color:#64748b;margin-top:2px">${e.content_type} — ${e.intent}</div></div>`).join("")}`,
+   transform:(data)=>({...data,keywords:data.keywords_text?data.keywords_text.split("\n").filter(k=>k.trim()):[],weeks:parseInt(data.weeks)||4,posts_per_week:parseInt(data.posts_per_week)||3})},
+
+  {id:"tfidf",icon:"📈",title:"TF-IDF Extractor",desc:"Extracts top TF-IDF terms from a page to discover content themes and keyword targets",cat:"keyword",badge:"keyword",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Top N terms",key:"top",type:"text",ph:"30"}],
+   render:(d)=>`<b>${d.total_words||0} total words</b><br><br>${(d.terms||[]).slice(0,20).map(t=>`<div style="display:flex;justify-content:space-between;font-size:13px;padding:3px 0;border-bottom:1px solid #1e293b"><span>${t.term}</span><span style="color:#38bdf8">${t.score}</span></div>`).join("")}`,
+   transform:(data)=>({...data,top:parseInt(data.top)||30})},
+
+  {id:"content-similarity",icon:"🪞",title:"Content Similarity Checker",desc:"Detects duplicate or near-duplicate content across multiple URLs using TF-IDF",cat:"content",badge:"content",
+   fields:[{label:"URLs — one per line (min 2)",key:"urls_text",type:"textarea",ph:"https://example.com/page1\nhttps://example.com/page2\nhttps://example.com/page3"},{label:"Similarity Threshold",key:"threshold",type:"text",ph:"0.7"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.urls_analyzed||0}</div><div class="stat-label">Pages</div></div><div class="stat"><div class="stat-val" style="color:${d.duplicate_pairs>0?'#ef4444':'#22c55e'}">${d.duplicate_pairs||0}</div><div class="stat-label">Duplicates</div></div></div>${(d.pairs||[]).map(p=>`<div style="padding:8px;background:#0f172a;border-radius:6px;margin:4px 0;font-size:12px"><div style="display:flex;justify-content:space-between"><b style="color:${p.severity==='HIGH'?'#ef4444':p.severity==='MEDIUM'?'#fb923c':'#22c55e'}">${p.similarity}</b><span>${p.severity}</span></div><div style="color:#64748b">${p.page_a.slice(0,50)}</div><div style="color:#64748b">${p.page_b.slice(0,50)}</div></div>`).join("")||'<div class="pass-item">No duplicates found ✅</div>'}`,
+   transform:(data)=>({...data,urls:data.urls_text?data.urls_text.split("\n").filter(u=>u.trim()):[],threshold:parseFloat(data.threshold)||0.7})},
+
+  {id:"keyword-difficulty",icon:"💪",title:"Keyword Difficulty Estimator",desc:"Estimates ranking difficulty by analyzing top competitor pages — no API needed",cat:"keyword",badge:"keyword",
+   fields:[{label:"Target Keyword",key:"keyword",type:"text",ph:"best crm software"},{label:"Competitor URLs — one per line",key:"urls_text",type:"textarea",ph:"https://competitor1.com/crm\nhttps://competitor2.com/crm"}],
+   render:(d)=>`<div style="text-align:center;padding:16px"><div style="font-size:48px;font-weight:700;color:${d.difficulty_score>=75?'#ef4444':d.difficulty_score>=55?'#fb923c':d.difficulty_score>=35?'#fbbf24':'#22c55e'}">${d.difficulty_score||0}</div><div style="color:#64748b;font-size:16px">${d.difficulty_label||"—"}</div></div><div class="stat-row"><div class="stat"><div class="stat-val">${d.competitor_benchmarks?.avg_words||0}</div><div class="stat-label">Avg Words</div></div><div class="stat"><div class="stat-val">${d.competitor_benchmarks?.avg_h2||0}</div><div class="stat-label">Avg H2s</div></div><div class="stat"><div class="stat-val">${d.competitor_benchmarks?.schema_pct||0}%</div><div class="stat-label">Schema Use</div></div></div><b>To Compete You Need:</b><br>${Object.entries(d.required_to_compete||{}).map(([k,v])=>`<div style="font-size:13px;padding:3px 0">${k}: <span style="color:#38bdf8">${v}+</span></div>`).join("")}`,
+   transform:(data)=>({...data,urls:data.urls_text?data.urls_text.split("\n").filter(u=>u.trim()):[]})},
+
+  {id:"sentence-complexity",icon:"🔡",title:"Sentence Complexity Analyzer",desc:"Flags complex, passive, and long sentences that hurt readability",cat:"content",badge:"content",
+   fields:[{label:"URL",key:"url",type:"text",ph:"https://example.com"},{label:"Or paste text",key:"text",type:"textarea",ph:"Your content here..."},{label:"Complexity threshold (0-100)",key:"threshold",type:"text",ph:"30"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total_sentences||0}</div><div class="stat-label">Sentences</div></div><div class="stat"><div class="stat-val" style="color:${d.flagged_count>0?'#fb923c':'#22c55e'}">${d.flagged_count||0}</div><div class="stat-label">Flagged</div></div><div class="stat"><div class="stat-val">${d.passive_count||0}</div><div class="stat-label">Passive</div></div></div><b>Most Complex:</b><br>${(d.most_complex||[]).slice(0,5).map(s=>`<div style="padding:6px;background:#0f172a;border-radius:4px;margin:4px 0;font-size:12px;border-left:3px solid #ef4444"><div style="color:#fca5a5">[${s.complexity_score}] ${s.sentence}</div><div style="color:#64748b">${s.issues}</div></div>`).join("")}`,
+   transform:(data)=>({...data,threshold:parseInt(data.threshold)||30})},
+
+  {id:"topic-authority",icon:"🏅",title:"Topic Authority Scorer",desc:"Scores topical authority across multiple pages — coverage, relevance, coherence",cat:"keyword",badge:"keyword",
+   fields:[{label:"Topic",key:"topic",type:"text",ph:"machine learning"},{label:"Page URLs — one per line",key:"urls_text",type:"textarea",ph:"https://site.com/page1\nhttps://site.com/page2"}],
+   render:(d)=>`${renderScore(d.total_score,d.grade)}<br><div class="stat-row"><div class="stat"><div class="stat-val">${d.score_coverage||0}/25</div><div class="stat-label">Coverage</div></div><div class="stat"><div class="stat-val">${d.score_relevance||0}/25</div><div class="stat-label">Relevance</div></div><div class="stat"><div class="stat-val">${d.score_diversity||0}/25</div><div class="stat-label">Diversity</div></div><div class="stat"><div class="stat-val">${d.score_coherence||0}/25</div><div class="stat-label">Coherence</div></div></div><b>Topic Mentions:</b> ${d.topic_mentions||0}<br><b>In Headings:</b> ${d.heading_mentions||0}`,
+   transform:(data)=>({...data,urls:data.urls_text?data.urls_text.split("\n").filter(u=>u.trim()):[]})},
+
+  {id:"backlink-profiler",icon:"🔗",title:"Backlink Anchor Profiler",desc:"Analyzes anchor text distribution from backlink data — detects over-optimization",cat:"backlink",badge:"backlink",
+   fields:[{label:"Anchors — paste as JSON rows [{\"anchor\":\"...\"}, ...]",key:"rows_json",type:"textarea",ph:'[{"anchor":"click here"},{"anchor":"best seo tools"},{"anchor":"https://site.com"}]'},{label:"Target Keyword (optional)",key:"keyword",type:"text",ph:"best seo tools"},{label:"Brand Name (optional)",key:"brand",type:"text",ph:"Acme"}],
+   render:(d)=>`<div class="stat-row">${Object.entries(d.type_distribution||{}).map(([k,v])=>`<div class="stat"><div class="stat-val">${v}</div><div class="stat-label">${k}</div></div>`).join("")}</div>${(d.issues||[]).map(i=>`<div class="issue-item">${i}</div>`).join("")||'<div class="pass-item">Anchor profile looks healthy ✅</div>'}<br><b>Top Anchors:</b><br>${(d.top_anchors||[]).slice(0,10).map(a=>`<div style="display:flex;justify-content:space-between;font-size:13px;padding:3px 0">${a.anchor||"(empty)"}<span style="color:#38bdf8">${a.count}</span></div>`).join("")}`,
+   transform:(data)=>{try{return {...data,rows:JSON.parse(data.rows_json||"[]")}}catch(e){return {...data,rows:[]}}}},
+
+  {id:"toxic-backlinks",icon:"☣️",title:"Toxic Backlink Detector",desc:"Flags toxic backlinks from domain/anchor data — risky TLDs, spam patterns, link farms",cat:"backlink",badge:"backlink",
+   fields:[{label:"Backlinks — paste as JSON [{\"domain\":\"...\",\"anchor\":\"...\"}]",key:"rows_json",type:"textarea",ph:'[{"domain":"spamsite.xyz","anchor":"buy cheap pills"},{"domain":"good-site.com","anchor":"best tools"}]'}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val" style="color:#ef4444">${d.high_risk||0}</div><div class="stat-label">High Risk</div></div><div class="stat"><div class="stat-val" style="color:#fb923c">${d.medium_risk||0}</div><div class="stat-label">Medium</div></div><div class="stat"><div class="stat-val" style="color:#22c55e">${d.low_risk||0}</div><div class="stat-label">Low Risk</div></div></div>${(d.top_toxic||[]).slice(0,10).map(t=>`<div class="issue-item">[${t.risk_score}] ${t.domain} — ${t.flags}</div>`).join("")||'<div class="pass-item">No toxic links detected ✅</div>'}`,
+   transform:(data)=>{try{return {...data,rows:JSON.parse(data.rows_json||"[]")}}catch(e){return {...data,rows:[]}}}},
+
+  {id:"keyword-gap",icon:"🕳️",title:"Keyword Gap Analyzer",desc:"Finds terms competitors rank for that your content is missing",cat:"keyword",badge:"keyword",
+   fields:[{label:"Your URLs — one per line",key:"my_urls_text",type:"textarea",ph:"https://mysite.com/page1\nhttps://mysite.com/page2"},{label:"Competitor URLs — one per line",key:"comp_urls_text",type:"textarea",ph:"https://competitor.com/page1\nhttps://competitor.com/page2"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val" style="color:#ef4444">${d.gaps_count||0}</div><div class="stat-label">Gaps</div></div><div class="stat"><div class="stat-val" style="color:#22c55e">${d.strengths_count||0}</div><div class="stat-label">Strengths</div></div></div><b>Top Gaps (terms you're missing):</b><br>${(d.top_gaps||[]).slice(0,15).map(g=>`<div style="display:flex;justify-content:space-between;font-size:13px;padding:3px 0;border-bottom:1px solid #1e293b"><span style="color:${g.priority==='HIGH'?'#ef4444':'#fb923c'}">${g.term}</span><span style="color:#38bdf8">${g.competitor_tfidf}</span></div>`).join("")}`,
+   transform:(data)=>({...data,my_urls:data.my_urls_text?data.my_urls_text.split("\n").filter(u=>u.trim()):[],competitor_urls:data.comp_urls_text?data.comp_urls_text.split("\n").filter(u=>u.trim()):[]})},
+
+  {id:"cannibalization",icon:"🦈",title:"Keyword Cannibalization Detector",desc:"Detects pages on the same site competing for the same keywords",cat:"keyword",badge:"keyword",
+   fields:[{label:"URLs — one per line (min 2, same site)",key:"urls_text",type:"textarea",ph:"https://site.com/page1\nhttps://site.com/page2\nhttps://site.com/page3"},{label:"Similarity Threshold",key:"threshold",type:"text",ph:"0.5"}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.pages_analyzed||0}</div><div class="stat-label">Pages</div></div><div class="stat"><div class="stat-val" style="color:${d.conflicts_found>0?'#ef4444':'#22c55e'}">${d.conflicts_found||0}</div><div class="stat-label">Conflicts</div></div></div>${(d.conflicts||[]).map(c=>`<div style="padding:8px;background:#0f172a;border-radius:6px;margin:4px 0;font-size:12px;border-left:3px solid ${c.severity==='HIGH'?'#ef4444':'#fb923c'}"><div style="display:flex;justify-content:space-between"><b>${c.similarity}</b><span>${c.severity}</span></div><div style="color:#94a3b8">${c.page_a.slice(0,50)}</div><div style="color:#94a3b8">${c.page_b.slice(0,50)}</div><div style="color:#64748b">Shared: ${c.shared_terms}</div></div>`).join("")||'<div class="pass-item">No cannibalization detected ✅</div>'}`,
+   transform:(data)=>({...data,urls:data.urls_text?data.urls_text.split("\n").filter(u=>u.trim()):[],threshold:parseFloat(data.threshold)||0.5})},
+
+  {id:"topic-model",icon:"🧩",title:"Topic Modeler",desc:"Runs NMF topic modeling on multiple pages to discover content themes",cat:"keyword",badge:"keyword",
+   fields:[{label:"URLs — one per line (min 2)",key:"urls_text",type:"textarea",ph:"https://site.com/page1\nhttps://site.com/page2\nhttps://site.com/page3"},{label:"Number of Topics",key:"num_topics",type:"text",ph:"5"}],
+   render:(d)=>`<b>${d.num_topics||0} Topics Found:</b><br>${(d.topics||[]).map(t=>`<div style="padding:8px;background:#0f172a;border-radius:6px;margin:4px 0;font-size:12px"><b style="color:#38bdf8">Topic ${t.topic_id}: ${t.label}</b><br><span style="color:#64748b">${(t.top_terms||[]).slice(0,6).join(", ")}</span></div>`).join("")}<br><b>Document Assignments:</b><br>${(d.assignments||[]).map(a=>`<div style="font-size:12px;padding:3px 0;color:#94a3b8">${a.document.slice(0,40)} → <span style="color:#38bdf8">Topic ${a.dominant_topic}</span> (${a.confidence})</div>`).join("")}`,
+   transform:(data)=>({...data,urls:data.urls_text?data.urls_text.split("\n").filter(u=>u.trim()):[],num_topics:parseInt(data.num_topics)||5})},
+
+  {id:"search-console",icon:"📡",title:"Search Console Analyzer",desc:"Finds quick wins, striking distance keywords, and CTR opportunities from GSC data",cat:"keyword",badge:"keyword",
+   fields:[{label:"GSC Data — paste as JSON [{\"query\":\"...\",\"clicks\":0,\"impressions\":0,\"position\":0}]",key:"rows_json",type:"textarea",ph:'[{"query":"seo tools","clicks":50,"impressions":500,"position":8,"ctr":0.1},{"query":"best seo software","clicks":10,"impressions":200,"position":15}]'}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total_clicks||0}</div><div class="stat-label">Clicks</div></div><div class="stat"><div class="stat-val">${d.total_impressions||0}</div><div class="stat-label">Impressions</div></div><div class="stat"><div class="stat-val">${d.avg_position||0}</div><div class="stat-label">Avg Position</div></div></div><b>Quick Wins:</b><br>${(d.quick_wins||[]).slice(0,5).map(r=>`<div style="font-size:13px;padding:3px 0;border-bottom:1px solid #334155">Pos ${r.position?.toFixed(1)||"?"} | ${r.impressions} impr — <span style="color:#38bdf8">${r.query}</span></div>`).join("")}<br><b>Striking Distance (Page 2):</b><br>${(d.striking_distance||[]).slice(0,5).map(r=>`<div style="font-size:13px;padding:3px 0;border-bottom:1px solid #334155">Pos ${r.position?.toFixed(1)||"?"} | ${r.impressions} impr — <span style="color:#fb923c">${r.query}</span></div>`).join("")}`,
+   transform:(data)=>{try{return {...data,rows:JSON.parse(data.rows_json||"[]")}}catch(e){return {...data,rows:[]}}}},
+
+  {id:"log-analyzer",icon:"📜",title:"Log File Analyzer",desc:"Parses server access logs for bot crawl insights and crawl budget waste",cat:"technical",badge:"technical",
+   fields:[{label:"Paste access log lines (Combined Log Format)",key:"log_content",type:"textarea",ph:'127.0.0.1 - - [08/Apr/2026:10:00:00 +0000] "GET /page HTTP/1.1" 200 1234 "-" "Googlebot/2.1"'}],
+   render:(d)=>`<div class="stat-row"><div class="stat"><div class="stat-val">${d.total_requests||0}</div><div class="stat-label">Total Requests</div></div><div class="stat"><div class="stat-val">${d.crawl_waste?.total||0}</div><div class="stat-label">Crawl Waste</div></div></div><b>Bot Distribution:</b><br>${Object.entries(d.bot_distribution||{}).map(([bot,count])=>`<div style="display:flex;justify-content:space-between;font-size:13px;padding:3px 0">${bot}<span style="color:#38bdf8">${count}</span></div>`).join("")}<br><b>Top Crawled Pages:</b><br>${(d.bot_crawled_paths||[]).slice(0,8).map(p=>`<div style="font-size:12px;padding:2px 0;color:#94a3b8">${p.count}× ${p.path}</div>`).join("")}`}
+];
+
+function renderScore(score, grade){
+  const color = score>=80?'#22c55e':score>=60?'#fb923c':'#ef4444';
+  return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="font-size:36px;font-weight:700;color:${color}">${score||0}</div><div><div style="font-size:13px;color:#64748b">Score / 100</div>${grade?`<div style="font-size:20px;font-weight:700;color:${color}">Grade ${grade}</div>`:""}</div></div><div class="score-bar"><div class="score-fill" style="width:${score||0}%;background:${color}"></div></div>`;
+}
+
+function renderDist(dist){
+  if(!dist) return "";
+  return `<b>Type Distribution:</b><br>${Object.entries(dist).map(([t,c])=>`<span class="tag tag-${t}">${t}: ${c}</span>`).join("")}`;
+}
+
+let currentCat = "all";
+let currentSearch = "";
+
+function renderGrid(){
+  const grid = document.getElementById("toolGrid");
+  const filtered = TOOLS.filter(t=>{
+    const matchCat = currentCat==="all" || t.cat===currentCat;
+    const matchSearch = !currentSearch || t.title.toLowerCase().includes(currentSearch) || t.desc.toLowerCase().includes(currentSearch);
+    return matchCat && matchSearch;
+  });
+  grid.innerHTML = filtered.map(t=>`
+    <div class="card" onclick="openTool('${t.id}')" data-cat="${t.cat}">
+      <div class="card-icon">${t.icon}</div>
+      <div class="card-title">${t.title}</div>
+      <div class="card-desc">${t.desc}</div>
+      <span class="card-badge badge-${t.badge}">${t.badge}</span>
+    </div>
+  `).join("");
+}
+
+function filterCat(cat, btn){
+  currentCat = cat;
+  document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  renderGrid();
+}
+
+function filterTools(){
+  currentSearch = document.getElementById("searchInput").value.toLowerCase();
+  renderGrid();
+}
+
+function openTool(id){
+  const tool = TOOLS.find(t=>t.id===id);
+  if(!tool) return;
+  document.getElementById("modalTitle").textContent = tool.icon+" "+tool.title;
+  const body = document.getElementById("modalBody");
+  body.innerHTML = `
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">${tool.desc}</p>
+    ${tool.fields.map(f=>`
+      <div class="form-group">
+        <label>${f.label}</label>
+        ${f.type==="textarea"?`<textarea id="field_${f.key}" placeholder="${f.ph||""}"></textarea>`:
+          f.type==="select"?`<select id="field_${f.key}">${(f.options||[]).map(o=>`<option value="${o}">${o}</option>`).join("")}</select>`:
+          `<input type="text" id="field_${f.key}" placeholder="${f.ph||""}">`}
+      </div>
+    `).join("")}
+    <button class="btn-run" onclick="runTool('${id}')">▶ Run Analysis</button>
+    <div id="result_${id}"></div>
+  `;
+  document.getElementById("modal").classList.add("open");
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.remove("open");
+}
+
+document.getElementById("modal").addEventListener("click", function(e){
+  if(e.target===this) closeModal();
+});
+
+async function runTool(id){
+  const tool = TOOLS.find(t=>t.id===id);
+  if(!tool) return;
+  const btn = document.querySelector(".btn-run");
+  const resultDiv = document.getElementById("result_"+id);
+  btn.disabled = true; btn.textContent = "⏳ Analyzing...";
+  resultDiv.innerHTML = `<div class="result-box"><div class="loading"><span class="spinner"></span>Analyzing... (first run may take 20s while Render wakes up)</div></div>`;
+
+  let data = {};
+  tool.fields.forEach(f=>{
+    const el = document.getElementById("field_"+f.key);
+    if(el) data[f.key] = el.value;
+  });
+  if(tool.transform) data = tool.transform(data);
+  if(data.max_n) data.max_n = parseInt(data.max_n)||3;
+  if(data.top) data.top = parseInt(data.top)||30;
+  if(data.min_words) data.min_words = parseInt(data.min_words)||300;
+
+  try{
+    const resp = await fetch(`${API}/${id}`, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
+    const result = await resp.json();
+    if(result.error){
+      resultDiv.innerHTML = `<div class="result-box"><div class="issue-item">❌ Error: ${result.error}</div></div>`;
+    } else {
+      resultDiv.innerHTML = `<div class="result-box">${tool.render(result)}</div>`;
+    }
+  } catch(e){
+    resultDiv.innerHTML = `<div class="result-box"><div class="issue-item">❌ Failed to connect to API. Make sure Render is running.</div></div>`;
+  }
+  btn.disabled = false; btn.textContent = "▶ Run Analysis";
+}
+
+renderGrid();
+</script>
+</body>
+</html>

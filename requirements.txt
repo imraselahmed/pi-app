@@ -2,4 +2,10 @@ flask
 flask-cors
 requests
 beautifulsoup4
+lxml
+pandas
+openpyxl
+numpy
+scikit-learn
+nltk
 gunicorn
